@@ -1,0 +1,32 @@
+html{
+    height: 100%;
+}
+body{
+    background-color: lavenderblush;
+    height: 100%;
+}
+.header{
+    background-color: lightcoral;
+    height: 10%;
+}
+.section{
+    background-color: rgb(253, 192, 192);
+    height: 80%;
+}
+.footer{
+    background-color: rgb(244, 230, 250);
+    height: 10%;
+}
+
+.main{
+    background-color: rgb(255, 255, 216);
+    height: 100%;
+    width: 75%;
+    display: inline-block;
+}
+.aside{
+    background-color: azure;
+    height: 100%;
+    width: 24.5%;
+    display: inline-block;
+}
