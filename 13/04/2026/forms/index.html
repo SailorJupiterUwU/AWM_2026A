@@ -3,46 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulario de Registro</title>
 </head>
 <body>
-    <h1>Registration Form</h1>
-    <form action="#" method="post">
+    <h1>Formulario de Registro</h1>
+    <form action="#">
+        <!-- Nombre -->
         <div>
-            <label for="firsName">First Name: *</label>
-            <input type="text" name="firsName" placeholder="Aqui va tu nombre">
+            <label for="primerNombre">Primer Nombre: *</label>
+            <input type="text" name="primerNombre" placeholder="Tu nombre...">
+        </div>
+        <!-- Apellido -->
+        <div>
+            <label for="primerApellido">Primer Apellido: *</label>
+            <input type="text" name="primerApellido" placeholder="Tu apellido...">
         </div>
         <div>
-            <label for="lastsName">Last Name: *</label>
-            <input type="text" name="lastName" placeholder="Aqui va tu apellido">
+        <!-- Correo -->
+            <label for="correo">Correo: *</label>
+            <input type="email" name="correo" placeholder="Tu correo...">    
         </div>
+        <!-- Contraseña -->
         <div>
-            <label for="email">Email: *</label>
-            <input type="text" name="email" placeholder="Aqui va tu email">
+            <label for="contra">Contraseña: *</label>
+            <input type="password" name="contra">
         </div>
+        <!-- Confirmar Contraseña -->
         <div>
-            <label for="contra"> Password: *</label>
-            <input type="password" name="contra" placeholder="Aqui va tu contraseña">
+            <label for="confirmarContra">Confirmar Contraseña: *</label>
+            <input type="password" name="confirmarContra">
         </div>
+        <!-- Fecha Nacimiento -->
         <div>
-            <label for="contraConfi"> Password: *</label>
-            <input type="password" name="contraConfi" placeholder="Confirma tu contraseña">
+            <label for="fechaNacimiento">Fecha de Nacimiento: *</label>
+            <input type="date" name="fechaNacimiento">
         </div>
+        <!-- Género -->
         <div>
-            <label for="fecha"> Birthday: *</label>
-            <input type="date" name="fecha" placeholder="Aqui va tu fecha de nacimiento">
+            <label for="seleccionGenero">Identidad de Género</br></label>
+            <input type="radio" name="genderMale">
+            <label for="genderMale">Masculino</label>
+            <input type="radio" name="genderFemale">
+            <label for="genderFemale">Femenino</label>
+            <input type="radio" name="genderNon">
+            <label for="genderNon">No binario</label>
+            <input type="radio" name="genderNoAnswer">
+            <label for="genderNoAnswer">Prefiero no responder</label>
         </div>
+        <!--Descripcion-->
         <div>
-            <label for="gender"> Gender: *</label>
-            
-            <input type="radio" name="male" value="bold" id="bold">
-            <label for="gender"> Male</label>
-            <input type="radio" name="male" value="bold" id="bold">
-            <label for="">Female</label>
-            <input type="radio" name="male" value="bold" id="bold">
-            <label for="">Non-Binary</label>
-            <input type="radio" name="male" value="bold" id="bold">
-            <label for="">I prefer not to answer</label>
+            <label for="descripcion">Una pequeña descipcion de mi...</br></label>
+            <textarea name="descripcion" cols="25"></textarea>
+        </div>
+        <!--Lenguaje Favorito-->
+        <div>
+            <label for="cmbBox">Lenguaje Favorito</label>
+            <select name="cmbBox">
+                <option>Java Script</option>
+                <option> C# </option>
+                <option> C++ </option>
+                <option> Python </option>
+                <option> Java </option>
+            </select>
+        </div>
+
+        <!--Check Box-->
+        <div>
+            <input type="checkbox" name="terminosCondiciones" checked>
+            <label for="terminosCondiciones">Sí, me gustaría recibir actualizaciones periódicamente</label>
+        </div>
+
+        <!--Boton Enviar-->
+        <div>
+            <input type="submit" value="Enviar">
         </div>
     </form>
 </body>
