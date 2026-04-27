@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!--Encabezado-->
+    <header>
+        <div class="contenedor_header">
+            <div id="header_title">
+                Tech Summint Quito 2026
+            </div>
+            <div id="header_description">
+                Encuentro de innnovacion y desarrollo web
+            </div>
+        </div>
+        <div id="header_button">
+            <button>Inscribirme</button>
+        </div>
+    </header>
+    <!--Primera tarjeta-->
+    <div class="card">
+        <!--Imagen-->
+        <div class="card--image">
+            Imagen del Evento
+        </div>
+        <!--Texto-->
+        <div class="card--contenido">
+            <div id="contenido_title">
+                Sobre el evento
+            </div>
+            <div id="contenido_texto">
+                Tech Summit Quito 2026 es un espacio de encuentro para estudiantes,
+                desarrolladores y profesionales interesados en diseño web, experiencia de 
+                usuario, interfaces modernas y buenas practicas en el desarrollo de aplicaciones.
+            </div>
+            <div class="tarjetas">
+                <div class="card--peque">
+                    <div class="cardPeque_title">Fecha</div>
+                    <div class="cardPeque_text">18 de noviembre</div>
+                </div>
+                <div class="card--peque">
+                    <div class="cardPeque_title">Lugar</div>
+                    <div class="cardPeque_text">Quito</div>
+                </div>
+                <div class="card--peque">
+                    <div class="cardPeque_title">Modalidad</div>
+                    <div class="cardPeque_text">Presencial</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Segunda tarjeta-->
+    <div class="card">
+        <!--Titulo-->
+        <div class="card--contenido">
+            <div id="contenido_title">
+                Agenda Principal
+            </div>
+            <!--Tarjetas-->
+            <div class="tarjetas">
+                <div class="card--peque">
+                    <div class="cardPeque_title">09:00</div>
+                    <div class="texto_card2">Diseño responsivo moderno</div>
+                    <div class="nombre_text">Ana Perez</div>
+                    <div class="btn_tarjetas">
+                        <button>Ver detalles</button>
+                    </div>
+                    
+                </div>
+                <div class="card--peque">
+                    <div class="cardPeque_title">11:00</div>
+                    <div class="texto_card2">Flexbox y Grid en proyectos reales</div>
+                    <div class="nombre_text">Carlos Mena</div>
+                    <div class="btn_tarjetas">
+                        <button>Ver detalles</button>
+                    </div>
+                </div>
+                <div class="card--peque">
+                    <div class="cardPeque_title">14:00</div>
+                    <div class="texto_card2">Buenas prácticas de interfaces web</div>
+                    <div class="nombre_text">Luisa Torres</div>
+                    <div class="btn_tarjetas">
+                        <button>Ver detalles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Tercera Tarjeta-->
+    <div class="card">
+        <div class="card--contenido">
+            <!--Titulo-->
+            <div id="contenido_title">
+                ¿Qué incluye tu inscripcion?
+            </div>
+            <!--Tarjetas-->
+            <div class="tarjetas">
+                <div class="card--verde"><button>Certificado Digital</button></div>
+                <div class="card--verde"><button>Material de apoyo</button></div>
+                <div class="card--verde"><button>Cofee break</button></div>
+                <div class="card--verde"><button>Networking</button></div>
+            </div>
+        </div>
+    </div>
+    <!--Formulario-->
+    
+    <div class="card">
+        <div class="card--contenido">
+            <!--Titulo-->
+            <div id="contenido_title">
+                Registro de asistentes
+            </div>
+            <!--Form-->
+            <form action="#" method="post">
+                <div>
+                    <label class="tit_form" for="registro_Nombres" >Nombre completo</label>
+                    <div><input class="object_form" type="text" name="registro_Nombres"></div>
+                </div>
+                <div>
+                    <label class="tit_form" for="tipo_Entrada">Tipo de entrada</label>
+                    <div>
+                        <select class="object_form" name="tipo_Entrada">
+                            <option value="tipo1">Estudiante</option>
+                            <option value="tipo2">Adultos</option>
+                            <option value="tipo3">Niños</option>
+                            <option value="tipo4">Tercera Edad</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="tit_form" for="observations">Obersvaciones</label>
+                    <textarea class="object_form"name="observations" rows="4"></textarea>
+                </div>
+                <div class="btn--verde">
+                    <button>Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
