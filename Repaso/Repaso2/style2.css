@@ -1,0 +1,131 @@
+body{
+    background-color: #1BA0E2;
+    font-family:Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /*Lineas mas altas*/
+    line-height: 1.8;
+    box-sizing: border-box;
+}
+header h1{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.card{
+    /*Distribucion del FLEX*/
+    flex: 1;
+    margin: 25px 75px 5px 75px;
+    /*Para que adentro tambien sea flex*/
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    
+}
+
+.imagen img{
+    flex: 1;
+    border-radius: 100%;
+    border: solid;
+    height: 100px;
+}
+#sitio{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#sitio select{
+    flex: 1;
+    margin-left: 10px;
+}
+
+.contenido_card{
+    /*Distribucion flex*/
+    flex: 4;
+    /**Para que tambien sea flex*/
+    display: flex;
+    flex-direction: column;
+    /*Para que los elementos esten centrados*/
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.texto--fondo{
+    background-color: white;
+    text-align: center;
+}
+
+.card--yellow{
+    background-color: #E4C700;
+    border-radius: 15px;
+    margin-top: 5px;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 50px;
+    padding-bottom: 7px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #cfb404;
+}
+.card--yellow  button{
+        background-color: white;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 5px;
+    }
+
+.card--green{
+    background-color: #60AA17;
+    border-radius: 15px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border: 2px solid #549117; 
+}
+
+.card--green button{
+    background-color:#1BA0E2;
+    color: white;
+    border: 2px solid #1485be;
+    border-radius: 5px;
+    padding-left:15px;
+    padding-right: 15px; 
+}
+.titulo{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.tit1{
+    flex: 2;
+    text-align: right;
+}
+.lik1{
+    flex: 1;
+    text-align: right;
+}
+.redondeado{
+    border-radius: 10px;
+}
+
+.card--green select,
+.card--green input[type="date"]{
+    border: 2px solid #549117;
+    border-radius: 5px;
+    padding: 3px 8px;
+    background-color: white;
+    margin-left: 8px;
+}
+.fechas{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}

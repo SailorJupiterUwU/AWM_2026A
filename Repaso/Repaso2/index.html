@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Document</title>
+</head>
+<body>
+    <!--Header-->
+    <header>
+        <h1><strong>Ranking de sitios turisticos</strong></h1>
+    </header>
+    <!--Card 1-->
+    <div class="card card--yellow">
+        <!--Contenedor para la Imagen-->
+        <div class="imagen">
+            <img src="montania.avif" alt="Montania">
+        </div>
+        <!--Contenedor para el texto-->
+        <div class="contenido_card">
+            <!--Titulo-->
+            <div class="titulo">
+                <strong class="tit1"> El Panecillo </strong>
+                <span class="lik1">1000 likes</span>
+            </div>
+            <div>
+                Quito, Ecuador
+            </div>
+            <!--Texto-->
+            <div>
+                <span  class="texto--fondo">
+                    <strong>EL Panecillo</strong> una elevacion natural de 3.000
+                    metros sobre el nivel del mar, (200 metros más alto que el promedio de la ciudad de Quito)
+                </span>
+            </div>
+            <!--Boton-->
+            <div>
+                <button>Like</button>
+            </div>
+        </div>
+    </div>
+    <!--Card 2-->
+    <div class="card card--yellow">
+        <!--Contenedor para la Imagen-->
+        <div class="imagen">
+            <img src="mundo.jpg" alt="Mundo">
+        </div>
+        <!--Contenedor para el texto-->
+        <div class="contenido_card">
+            <!--Titulo-->
+            <div class="titulo">
+                <strong class="tit1">Mitad del Mundo</strong>
+                <span class="lik1">980 likes</span>
+            </div>
+            <div>
+                Quito, Ecuador
+            </div>
+            <!--Texto-->
+            <div>
+                <span  class="texto--fondo">
+                    La ciudad <strong>Mitad del Mundo</strong> es un complejo
+                    turístico y cultural de la prefectura de la provincia de Pichincha. 
+                    Esta situado en la parroquia
+                </span>
+            </div>
+            <!--Boton-->
+            <div>
+                <button>Like</button>
+            </div>
+        </div>
+    </div>
+    <!--Card 3-->
+    <div class="card">
+        <div class="card--green contenido_card">
+            <strong>Destino Preferido:</strong>
+            <div class="imagen">
+                <img src="montania.avif" alt="Montania">
+            </div>
+        </div>
+        <div class="card--green contenido_card">
+            <strong>Tu destino más cercano</strong>
+            <div class="imagen">
+                <img src="mundo.jpg" alt="Mundo">
+            </div>
+        </div>
+        <div class="card--green contenido_card">
+            <strong>Destino más económico:</strong>
+            <div class="imagen">
+                <img src="montania.avif" alt="Montania">
+            </div>
+        </div>
+    </div>
+    <!--Card 4-->
+    <div class="card card--green">
+        <div class="contenido_card">
+            <strong>!Quiero viajar a este sitio!</strong>
+            <div id="sitio">
+                <strong>Sitio turístico</strong>
+                <select class="redondeado" name="cmb_sitios" id="cmb_sitios">
+                    <option value="Panecillo">Panecillo</option>
+                </select>
+            </div>
+            <div class="fechas">
+    <div>
+        <strong>Fecha inicial</strong>
+        <input type="date" name="dt_fechaIni" id="dt_fechaIni">
+    </div>
+    <div>
+        <strong>Fecha final</strong>
+        <input type="date" name="dt_fechaFin" id="dt_fechaFin">
+    </div>
+</div>
+    </div>
+</body>
+</html>
