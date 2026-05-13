@@ -9,26 +9,31 @@ const EstudianteForm = (props) => {
         edad: 0,
         url: " "
     });
-    const [errorNombre, setError] = useState(" ");
-    const [errorEdad, setErrorEdad] = useState(" ");
-    
+    const [errorNombre, setError] = useState("");
+    const [errorEdad, setErrorEdad] = useState("");
+
     //Desestructuracion de la funcion de props
     const { onAgregar } = props;
 
     const handlerSubmit = (e) => {
         e.preventDefault();
         //Para manejar el tamaño del texto
-        if ((nuevoEstudiante.nombre.lenght >= 8) && (nuevoEstudiante.edad > 18)) {
+        if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad > 18)) {
             onAgregar(nuevoEstudiante)
-            setError(" ")
-            setErrorEdad(" ")
-        }else{
-            if(nuevoEstudiante.nombre.lenght <= 7){
-                setError("El nombre debe tener 8 caracteres minimo")
-            }
-            if(nuevoEstudiante.edad < 18){
-                setErrorEdad("La edad debe ser mayor a 18")
-            }
+            setError("")
+            setErrorEdad("")
+            setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " " })
+        }
+
+        if (nuevoEstudiante.nombre.length <= 7) {
+            setError("El nombre debe tener 8 caracteres minimo")
+        } else {
+            setError("")
+        }
+        if (nuevoEstudiante.edad < 18) {
+            setErrorEdad("La edad debe ser mayor a 18")
+        } else {
+            setErrorEdad("")
         }
     }
 
@@ -44,7 +49,7 @@ const EstudianteForm = (props) => {
                     onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, nombre: e.target.value })}
                     placeholder="Ingresa nombre" required />
             </div>
-            <div>
+            <div style={{color: "red"}}>
                 {errorNombre}
             </div>
             <div>
@@ -56,7 +61,7 @@ const EstudianteForm = (props) => {
                     onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, edad: e.target.value })}
                     placeholder="Ingresa tu edad" required />
             </div>
-            <div>
+            <div style={{color: "red"}}>
                 {errorEdad}
             </div>
             <div>
@@ -80,3 +85,19 @@ const EstudianteForm = (props) => {
 }
 
 export default EstudianteForm;
+/*Para json server
+{
+  "$schema": "./node_modules/json-server/schema.json",
+  "posts": [
+    { "id": "1", "title": "a title", "views": 100 },
+    { "id": "2", "title": "another title", "views": 200 }
+  ],
+  "comments": [
+    { "id": "1", "text": "a comment about post 1", "postId": "1" },
+    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
+*/
