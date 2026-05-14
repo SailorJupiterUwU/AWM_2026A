@@ -1,4 +1,7 @@
 import EstudiantesPage from "./pages/EstudiantesPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import EstudianteForm from "./components/EstudianteForm";
+import HomePage from "./pages/HomePage";
 /* Es un componente funcional, no tiene sentido que no tenga return */
 /* Esto de afuera es javaScript */
 function App(){
@@ -7,9 +10,13 @@ function App(){
     /* Se pone lo que el usuario debe ver, el componente que se va a mostrar*/
     /* Codigo .JSX no es html*/
     //Solo se puede retornar un elemento, por lo tanto se usa un contenedor que tenga a los otros elementos
-    <div>
-      <EstudiantesPage/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/estudiantes" element={<EstudiantesPage/>}></Route>
+        <Route path="/estudiantes/nuevo" element={<EstudianteForm/>}></Route>
+        <Route path="/home" element={<HomePage/>}></Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 export default App;

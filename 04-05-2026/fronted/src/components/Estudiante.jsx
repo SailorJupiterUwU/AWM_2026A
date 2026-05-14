@@ -11,3 +11,6 @@ const Estudiante = (props) => {
     )
 }
 export default Estudiante;
+/* Condicional Terciario
+    expresion-logica? (sentencia jsx cuando es verdadera) : (sentencia jsx cuando es falsa)
+*/
