@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const EstudianteForm = (props) => {
+    //Para navegar entre pagin
+    const navegar = useNavigate();
     //Variable de estado para el nuevo estudiante
     const [nuevoEstudiante, setNuevoEstudiante] = useState({
-        id: " ",
         nombre: " ",
         edad: 0,
         url: " "
@@ -23,6 +25,7 @@ const EstudianteForm = (props) => {
             setError("")
             setErrorEdad("")
             setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " " })
+            navegar("/estudiantes")
         }
 
         if (nuevoEstudiante.nombre.length <= 7) {
@@ -85,19 +88,3 @@ const EstudianteForm = (props) => {
 }
 
 export default EstudianteForm;
-/*Para json server
-{
-  "$schema": "./node_modules/json-server/schema.json",
-  "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
-  ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-}
-*/

@@ -2,9 +2,14 @@ import EstudiantesPage from "./pages/EstudiantesPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EstudianteForm from "./components/EstudianteForm";
 import HomePage from "./pages/HomePage";
+import { useEstudiante } from "./hooks/useEstudiante";
+
+
 /* Es un componente funcional, no tiene sentido que no tenga return */
 /* Esto de afuera es javaScript */
 function App(){
+
+  const { estudiantes, agregarEstudiante } = useEstudiante();
   /* Se retorna lo que se quiere mostrar */
   return (
     /* Se pone lo que el usuario debe ver, el componente que se va a mostrar*/
@@ -12,8 +17,8 @@ function App(){
     //Solo se puede retornar un elemento, por lo tanto se usa un contenedor que tenga a los otros elementos
     <BrowserRouter>
       <Routes>
-        <Route path="/estudiantes" element={<EstudiantesPage/>}></Route>
-        <Route path="/estudiantes/nuevo" element={<EstudianteForm/>}></Route>
+        <Route path="/estudiantes" element={<EstudiantesPage estudiantes = {estudiantes}/>}></Route>
+        <Route path="/estudiantes/nuevo" element={<EstudianteForm onAgregar = { agregarEstudiante }/>}></Route>
         <Route path="/home" element={<HomePage/>}></Route>
       </Routes>
     </BrowserRouter>
