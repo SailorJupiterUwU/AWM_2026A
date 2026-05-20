@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EstudianteForm from "./components/EstudianteForm";
 import HomePage from "./pages/HomePage";
 import { useEstudiante } from "./hooks/useEstudiante";
+import DetalleEstudiante from "./pages/DetalleEstudiante";
 
 
 /* Es un componente funcional, no tiene sentido que no tenga return */
@@ -20,6 +21,7 @@ function App(){
         <Route path="/estudiantes" element={<EstudiantesPage estudiantes = {estudiantes}/>}></Route>
         <Route path="/estudiantes/nuevo" element={<EstudianteForm onAgregar = { agregarEstudiante }/>}></Route>
         <Route path="/home" element={<HomePage/>}></Route>
+         <Route path= "/estudiantes/:id/detalle" element= {<DetalleEstudiante/>}></Route>
       </Routes>
     </BrowserRouter>
   )

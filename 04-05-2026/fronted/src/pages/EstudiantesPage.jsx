@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Estudiante from "../components/Estudiante";
 import EstudianteForm from "../components/EstudianteForm";
 
@@ -9,6 +10,7 @@ const EstudiantesPage = (props) => {
     //Para usar la funcion
 
     console.log("Renderizando...");
+    const navegar = useNavigate()
 
     return (
         <div>
@@ -17,8 +19,12 @@ const EstudiantesPage = (props) => {
             <hr />
             {
                 estudiantes.map((estudiante) => {
-                    return <Estudiante key={estudiante.id} nombre={estudiante.nombre} edad={estudiante.edad} url={estudiante.url} />
-                })
+                    return (<div key={estudiante.id}> <Estudiante  nombre={estudiante.nombre} edad={estudiante.edad} url={estudiante.url} /> 
+                        <button onClick={() => navegar(`/estudiantes/${estudiante.id}/detalle`) }>Detalle</button>
+                        <button>Eliminar</button>
+                        </div>
+                    )
+                    })
             }
         </div>
     )
