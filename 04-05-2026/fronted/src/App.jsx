@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/estudiantes" element={<EstudiantesPage estudiantes={estudiantes} onEliminar={eliminarEstudiante} />}></Route>
         <Route path="/estudiantes/nuevo" element={<EstudianteForm onAgregar={agregarEstudiante} />}></Route>
-        <Route path="/home" element={<HomePage />}></Route>
+        <Route path="/" element={<HomePage />}></Route>
         <Route path="/estudiantes/:id/detalle" element={<DetalleEstudiante />}></Route>
       </Routes>
     </BrowserRouter>
