@@ -8,9 +8,9 @@ import DetalleEstudiante from "./pages/DetalleEstudiante";
 
 /* Es un componente funcional, no tiene sentido que no tenga return */
 /* Esto de afuera es javaScript */
-function App(){
+function App() {
 
-  const { estudiantes, agregarEstudiante } = useEstudiante();
+  const { estudiantes, agregarEstudiante, eliminarEstudiante } = useEstudiante();
   /* Se retorna lo que se quiere mostrar */
   return (
     /* Se pone lo que el usuario debe ver, el componente que se va a mostrar*/
@@ -18,10 +18,10 @@ function App(){
     //Solo se puede retornar un elemento, por lo tanto se usa un contenedor que tenga a los otros elementos
     <BrowserRouter>
       <Routes>
-        <Route path="/estudiantes" element={<EstudiantesPage estudiantes = {estudiantes}/>}></Route>
-        <Route path="/estudiantes/nuevo" element={<EstudianteForm onAgregar = { agregarEstudiante }/>}></Route>
-        <Route path="/home" element={<HomePage/>}></Route>
-         <Route path= "/estudiantes/:id/detalle" element= {<DetalleEstudiante/>}></Route>
+        <Route path="/estudiantes" element={<EstudiantesPage estudiantes={estudiantes} onEliminar={eliminarEstudiante} />}></Route>
+        <Route path="/estudiantes/nuevo" element={<EstudianteForm onAgregar={agregarEstudiante} />}></Route>
+        <Route path="/home" element={<HomePage />}></Route>
+        <Route path="/estudiantes/:id/detalle" element={<DetalleEstudiante />}></Route>
       </Routes>
     </BrowserRouter>
   )
