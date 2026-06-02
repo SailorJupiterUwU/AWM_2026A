@@ -5,7 +5,7 @@ import EstudianteForm from "../components/EstudianteForm";
 const EstudiantesPage = (props) => {
 
     //Se trae la lista de estudiantesw
-    const { estudiantes } = props;
+    const { estudiantes, darLike } = props;
 
     //Para usar la funcion
 

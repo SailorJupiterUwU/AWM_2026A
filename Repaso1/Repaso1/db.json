@@ -1,0 +1,31 @@
+{
+  "sitio": [
+    {
+      "id": "1",
+      "nombre": "Mitad del Mundo",
+      "ciudad": "Quito",
+      "pais": "Ecuador",
+      "descripcion": " es un complejo turístico y cultural de la prefectura de la provincia de Pichincha. Esta situado en la parroquia",
+      "imagen": "/imagenes/mundo.png",
+      "likes": 980
+    },
+    {
+      "id": "2",
+      "nombre": "El Panecillo",
+      "ciudad": "Quito",
+      "pais": "Ecuador",
+      "descripcion": " una elevacion natural de 3.000 metros sobre el nivel del mar, (200 metros más alto que el promedio de la ciudad de Quito)",
+      "imagen": "/imagenes/montania.avi",
+      "likes": 1000
+    },
+    {
+      "nombre": "AAAAAAAAAAAAAAAAA",
+      "ciudad": "Quito123456",
+      "pais": "Ecuador123456",
+      "likes": 0,
+      "id": "dzDA17am7gM",
+      "descripcion": "123456789789"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
