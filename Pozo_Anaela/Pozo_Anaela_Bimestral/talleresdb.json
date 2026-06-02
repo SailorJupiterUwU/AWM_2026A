@@ -1,0 +1,23 @@
+{
+    "talleres": [
+        {
+            "id": 1,
+            "nombre": "Introduccion a React",
+            "nivel": "Basico",
+            "duracion": 20
+        },
+        {
+            "id": 2,
+            "nombre": "JavaScript Moderno",
+            "nivel": "Intermedio",
+            "duracion": 30
+        },
+        {
+            "id": 3,
+            "nombre": "Programacion Avanzada",
+            "nivel": "Basico",
+            "duracion": 40
+        }
+
+    ]
+}
