@@ -27,9 +27,17 @@ export const useEstudiante = () => {
 
     const eliminarEstudiante = (id) => {
         api.delete(`/estudiantes/${id}`)
-            .then(() => prev => estudiantes.filter(e => e.id != id))
-            //.then(()=>setEstudiantes(estudiantes.filter(e=> e.id !=id)))
+            //.then(() => prev => estudiantes.filter(e => e.id != id))
+            .then(() => setEstudiantes(estudiantes.filter(e => e.id != id)))
             .catch(err => console.log(err))
     }
-    return { estudiantes, agregarEstudiante, eliminarEstudiante };
+
+    const editarEstudiante = (editadoEstudiante) => {
+        api.put(`/estudiantes/${editadoEstudiante.id}`, editadoEstudiante) 
+            .then(res => setEstudiantes(prev =>
+                prev.map(e => e.id === editadoEstudiante.id ? res.data : e) 
+            ))
+            .catch(err => console.log(err))
+    }
+    return { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante };
 }
