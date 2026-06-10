@@ -1,6 +1,6 @@
 //a este componente lo visitamos a través del path /estudiante/:id/detalle
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
 
 //Actualizar estudiante form para que tenga dos propositos, crear y editar estudiante, rutas diferentes
@@ -8,6 +8,7 @@ import { api } from "../utils/api";
 const DetalleEstudiante = () => {
     const [estudiante, setEstudiante] = useState({});
     const { id } = useParams();
+    const navegar = useNavigate();
 
     useEffect(() => {
         api.get(`/estudiantes/${id}`)
@@ -21,7 +22,7 @@ const DetalleEstudiante = () => {
             <h4>Edad: {estudiante.edad}</h4>
             {estudiante.url?<a href={estudiante.url}>Home Page</a>:<span>Home page no disponible</span>}
             <br />
-            <button>Editar UwU</button>
+            <button onClick={()=> navegar(`/estudiantes/${id}/editar`)}>Editar UwU</button>
         </div>
     )
 }

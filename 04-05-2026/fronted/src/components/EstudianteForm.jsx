@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { api } from "../utils/api";
+import { useParams } from "react-router-dom";
 
 const EstudianteForm = (props) => {
     //Para navegar entre pagin
@@ -11,21 +12,45 @@ const EstudianteForm = (props) => {
         edad: 0,
         url: " "
     });
+
+    //Para hacer el formulario
+    const { id } = useParams();
+
+    useEffect(() => {
+        if (editar) {
+            api.get(`/estudiantes/${id}`)
+                .then(res => setNuevoEstudiante(res.data))
+                .catch(err => console.log(err))
+        }
+    }, [id]);
+
     const [errorNombre, setError] = useState("");
     const [errorEdad, setErrorEdad] = useState("");
 
     //Desestructuracion de la funcion de props
-    const { onAgregar } = props;
+    const { onAgregar, onEditar } = props;
+
+    //Para saber si esta editando o no
+    const editar = !!id;
 
     const handlerSubmit = (e) => {
         e.preventDefault();
         //Para manejar el tamaño del texto
         if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad > 18)) {
-            onAgregar(nuevoEstudiante)
-            setError("")
-            setErrorEdad("")
-            setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " " })
-            navegar("/estudiantes")
+            if (editar) {
+                onEditar(nuevoEstudiante)
+                setError("")
+                setErrorEdad("")
+                setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " " })
+                navegar("/estudiantes")
+            }
+            else {
+                onAgregar(nuevoEstudiante)
+                setError("")
+                setErrorEdad("")
+                setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " " })
+                navegar("/estudiantes")
+            }
         }
 
         if (nuevoEstudiante.nombre.length <= 7) {
@@ -52,7 +77,7 @@ const EstudianteForm = (props) => {
                     onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, nombre: e.target.value })}
                     placeholder="Ingresa nombre" required />
             </div>
-            <div style={{color: "red"}}>
+            <div style={{ color: "red" }}>
                 {errorNombre}
             </div>
             <div>
@@ -64,7 +89,7 @@ const EstudianteForm = (props) => {
                     onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, edad: e.target.value })}
                     placeholder="Ingresa tu edad" required />
             </div>
-            <div style={{color: "red"}}>
+            <div style={{ color: "red" }}>
                 {errorEdad}
             </div>
             <div>
