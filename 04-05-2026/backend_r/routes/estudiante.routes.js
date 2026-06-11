@@ -1,4 +1,4 @@
-const EstudianteController = require("../controllers/estudiante.controller")
+const EstudianteController = require("../controllers/estudiante.controllers")
 
 module.exports = function(app) {
     app.get("/estudiantes", EstudianteController.getAllEstudiantes);
