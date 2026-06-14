@@ -37,6 +37,7 @@ app.listen(puerto, () => console.log("El servidor esta escuchando en el puerto: 
 /*proposito de mongus.config.js es establecer el string conexion con la bdd mongo db */
 
 const allEstudiantesRoutes = require("./routes/estudiante.routes")
+app.use(express.json());
 allEstudiantesRoutes(app);
 
 app.listen(puerto, () => {

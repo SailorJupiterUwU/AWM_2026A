@@ -20,7 +20,8 @@ const EstudianteSchema = new mongoose.Schema(
         url: {
             type: String
         }
-    }
+    },
+    { versionKey: false }
 );
 
 const Estudiante = mongoose.model("Estudiante", EstudianteSchema);

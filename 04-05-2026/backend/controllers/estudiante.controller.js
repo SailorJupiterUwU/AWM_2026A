@@ -11,7 +11,7 @@ module.exports.getAllEstudiantes = (_, response) => {
 //para un estudiante en especifico
 module.exports.getEstudianteID = (request, response) => {
     const { id } = request.params;
-    Estudiante.find({id})
+    Estudiante.findById(id)
         .then(estudiante => response.json(estudiante))
         .catch(err => response.json(err))
 }
@@ -20,13 +20,24 @@ module.exports.getEstudianteID = (request, response) => {
 module.exports.newEstudiante = (request, response) => {
     const { nombre, edad, url } = request.body;
     Estudiante.create({ nombre, edad, url })
-        .then(estudiante => response.json(estudiante))
+        .then(estudianteNuevo => response.json(estudianteNuevo))
         .catch(err => response.json(err))
 
 }
 
 //para editar estudiante
-module.exports.editEstudiante = (request, responde) => {
+module.exports.editEstudiante = (request, response) => {
+    const { id } = request.params;
     const { url } = request.body;
-    Estudiante.
+    Estudiante.findOneAndUpdate({ _id: id }, { url }, { returnDocument: 'after' })
+        .then(estudianteEditado => response.json(estudianteEditado))
+        .catch(err => response.json(err))
+}
+
+//para eliminar un estudiante
+module.exports.deleteEstudiante = (request, response) => {
+    const { id } = request.params;
+    Estudiante.deleteOne({ _id: id })
+        .then(estudianteEliminado => response.json(estudianteEliminado))
+        .catch(err => response.json(err))
 }
