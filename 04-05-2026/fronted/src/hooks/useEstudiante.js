@@ -35,9 +35,9 @@ export const useEstudiante = () => {
     }
 
     const editarEstudiante = (editadoEstudiante) => {
-        api.put(`/estudiantes/${editadoEstudiante.id}`, editadoEstudiante) 
+        api.put(`/estudiantes/${editadoEstudiante._id}`, editadoEstudiante) 
             .then(res => setEstudiantes(prev =>
-                prev.map(e => e.id === editadoEstudiante.id ? res.data : e) 
+                prev.map(e => e.id === editadoEstudiante._id ? res.data : e) 
             ))
             .catch(err => console.log(err))
     }
