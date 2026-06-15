@@ -1,10 +1,16 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const puerto = 8000;
 
 const sequelize = require("./config/sequelize.config");
-const allEstudiantesRoutes = require("./routes/estudiante.routes")
+//Middleware antes de las rutas, tipos de middelwares: Implementado o Crearlos por uno mismo
+/* Tambien se puede llamar al middleware desde las rutas */
+app.use(cors());
 app.use(express.json());
+
+const allEstudiantesRoutes = require("./routes/estudiante.routes")
+
 allEstudiantesRoutes(app);
 
 sequelize.authenticate()

@@ -28,15 +28,17 @@ module.exports.newEstudiante = (request, response) => {
 //para editar estudiante
 module.exports.editEstudiante = (request, response) => {
     const { id } = request.params;
-    const { url } = request.body;
-    Estudiante.findOneAndUpdate({ _id: id }, { url }, { returnDocument: 'after' })
+    const { nombre, edad, url } = request.body;
+    Estudiante.findOneAndUpdate({ _id: id }, { nombre, edad, url }, { returnDocument: 'after' })
         .then(estudianteEditado => response.json(estudianteEditado))
         .catch(err => response.json(err))
 }
 
 //para eliminar un estudiante
 module.exports.deleteEstudiante = (request, response) => {
+
     const { id } = request.params;
+    console.log(id)
     Estudiante.deleteOne({ _id: id })
         .then(estudianteEliminado => response.json(estudianteEliminado))
         .catch(err => response.json(err))

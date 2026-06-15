@@ -39,9 +39,9 @@ ALTER TABLE estudiantes MODIFY COLUMN id INT AUTO_INCREMENT;
 //para editar estudiante
 module.exports.editEstudiante = async (request, response) => {
     const { id } = request.params;
-    const { url } = request.body;
+    const { nombre, edad, url } = request.body;
     try {
-        const [updateRowCount] = await Estudiante.update({ url }, { where: { id: id } })
+        const [updateRowCount] = await Estudiante.update({ nombre, edad, url }, { where: { id: id } })
         if (updateRowCount == 0)
             return response.status(400).json({ message: "Estudiante no encontrado" });
         const estudianteEditado = await Estudiante.findOne({ where: { id: id } })
@@ -65,3 +65,17 @@ module.exports.deleteEstudiante = async (request, response) => {
     }
 
 }
+/* 
+    Para usar el middleware
+    module.exports.getEstudianteID = async (request, response, next) => {}
+
+        Middleware
+        app.use(CORS());
+        Para compartir recursos entre cualquier origen, y se pone en el server.js, en la cabecera pone un campo indicando que el servidor
+        permite compartir datos de distintos origenes
+        CORS: Cross Origin Resource Sharing
+        Permite compartir recursos de origen cruzado, compartir recursos de multiples fuentes
+        Es necesario para manejar problemas de seguridad en aplicaciones web
+
+}
+*/

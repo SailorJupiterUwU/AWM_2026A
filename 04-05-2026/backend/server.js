@@ -1,9 +1,12 @@
 
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const puerto = 8000;
 
+
 require("./config/mongoose.config")
+app.use(cors());
 
 //Definicion de ruta
 /*req y res son arametros posicionales y son objetos
