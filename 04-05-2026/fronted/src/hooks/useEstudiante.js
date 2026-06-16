@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../utils/api"
+import { getId } from "../utils/normalizador";
 
 //Gestionar el estado y las conexiones a la API que afecta al estado
 export const useEstudiante = () => {
@@ -27,17 +28,18 @@ export const useEstudiante = () => {
 
     const eliminarEstudiante = (id) => {
         api.delete(`/estudiantes/${id}`)
-            //.then(() => prev => estudiantes.filter(e => e.id != id))
+
             .then(() => {
                 console.log("Estuidante eliminado", id)
-                setEstudiantes(estudiantes.filter(e => e.id != id))})
+                setEstudiantes(prev=> prev.filter(e => getId(e) !== id))})
             .catch(err => console.log(err))
     }
 
     const editarEstudiante = (editadoEstudiante) => {
-        api.put(`/estudiantes/${editadoEstudiante._id}`, editadoEstudiante) 
+        const id = getId(editadoEstudiante)
+        api.put(`/estudiantes/${id}`, editadoEstudiante) 
             .then(res => setEstudiantes(prev =>
-                prev.map(e => e.id === editadoEstudiante._id ? res.data : e) 
+                prev.map(e => getId(e) === id ? res.data : e) 
             ))
             .catch(err => console.log(err))
     }

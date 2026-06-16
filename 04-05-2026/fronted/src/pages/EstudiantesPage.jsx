@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Estudiante from "../components/Estudiante";
 import EstudianteForm from "../components/EstudianteForm";
+import { getId } from "../utils/normalizador";
 
 const EstudiantesPage = (props) => {
 
+    
     //Se trae la lista de estudiantesw
     const { estudiantes, onEliminar } = props;
 
@@ -18,9 +20,10 @@ const EstudiantesPage = (props) => {
             <hr />
             {
                 estudiantes.map((estudiante) => {
-                    return (<div key={estudiante._id}> <Estudiante nombre={estudiante.nombre} edad={estudiante.edad} url={estudiante.url} />
-                        <button onClick={() => navegar(`/estudiantes/${estudiante._id}/detalle`)}>Detalle</button>
-                        <button onClick={() => onEliminar(estudiante._id)}>Eliminar</button>
+                    const id = getId(estudiante)
+                    return (<div key={id}> <Estudiante nombre={estudiante.nombre} edad={estudiante.edad} url={estudiante.url} />
+                        <button onClick={() => navegar(`/estudiantes/${id}/detalle`)}>Detalle</button>
+                        <button onClick={() => onEliminar(id)}>Eliminar</button>
                     </div>
                     )
                 })
