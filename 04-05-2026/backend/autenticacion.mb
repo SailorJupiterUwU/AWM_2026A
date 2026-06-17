@@ -1,0 +1,23 @@
+##Se debe implementar la aplicacion con https###
+Autenticacion:
+Proceso para validar que la persona es quien dice ser, o validar cualquier cosa
+La forma mas facil de autenticar es con algo que se conoce, lo mas usado es usuario y contraseña.
+Funciona cuando no se comparte las credenciales, es la mas fácil de implementar.
+Autenticacion basado en usuario y contraseña
+Las validaciones se hace en fronted y backend, y en backend hacer a distintos niveles, de bdd (esquema), en el modelo, en el controller, se debe hacer en la carpeta de servicios.
+*Proceso de Autenticacion
+**Proceso de Registro
+1. Proveer credenciales en interfaz de registro //Fronted
+    Registro(Nombre, Apellido, Email, Username, Password)
+2. Post(Nombre, Apellido, Email, Username, Password) //Fronted y Backend
+    Hay que tener implementado el endopint
+3. Validar en el controlador (usernames duplicados o campos en general) //Backend
+
+4. Hash Password (es lo que se almacena en la bdd)
+    Se desecha la contraseña
+5. Almacena en BDD
+
+**Proceso de Autenticacion (Inicio de Sesion)
+1. Formulario de Inicio de Sesion (username, password)
+2. Post(username, password)
+3. Recupera informacion del usuario con el username, se obtiene el hash del password enviado y 
