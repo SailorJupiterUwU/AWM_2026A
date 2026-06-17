@@ -20,4 +20,6 @@ Las validaciones se hace en fronted y backend, y en backend hacer a distintos ni
 **Proceso de Autenticacion (Inicio de Sesion)
 1. Formulario de Inicio de Sesion (username, password)
 2. Post(username, password)
-3. Recupera informacion del usuario con el username, se obtiene el hash del password enviado y 
+3. Recupera informacion del usuario con el username
+4. Obtener hash de password enviado por el usuario en este momento y se compara con el hash del registro
+5.
