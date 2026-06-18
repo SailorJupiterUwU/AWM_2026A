@@ -10,7 +10,9 @@ const EstudianteForm = (props) => {
     const [nuevoEstudiante, setNuevoEstudiante] = useState({
         nombre: " ",
         edad: 0,
-        url: " "
+        url: " ",
+        email: " ",
+        password: " "
     });
 
     //Para hacer el formulario
@@ -26,6 +28,7 @@ const EstudianteForm = (props) => {
 
     const [errorNombre, setError] = useState("");
     const [errorEdad, setErrorEdad] = useState("");
+    const [errorEmail, setErrorEmail] = useState("");
 
     //Desestructuracion de la funcion de props
     const { onAgregar, onEditar } = props;
@@ -36,19 +39,19 @@ const EstudianteForm = (props) => {
     const handlerSubmit = (e) => {
         e.preventDefault();
         //Para manejar el tamaño del texto
-        if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad > 18)) {
+        if ((nuevoEstudiante.nombre.length >= 8) && (nuevoEstudiante.edad > 18) && (nuevoEstudiante.email.length >= 8)) {
             if (editar) {
                 onEditar(nuevoEstudiante)
                 setError("")
                 setErrorEdad("")
-                setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " " })
+                setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " ", email: " ", password: " " })
                 navegar("/estudiantes")
             }
             else {
                 onAgregar(nuevoEstudiante)
                 setError("")
                 setErrorEdad("")
-                setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " " })
+                setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " ", email: " ", password: " " })
                 navegar("/estudiantes")
             }
         }
@@ -62,6 +65,11 @@ const EstudianteForm = (props) => {
             setErrorEdad("La edad debe ser mayor a 18")
         } else {
             setErrorEdad("")
+        }
+        if (nuevoEstudiante.email.length <= 7) {
+            setErrorEmail("El nombre debe tener 8 caracteres minimo")
+        } else {
+            setErrorEmail("")
         }
     }
 
@@ -79,6 +87,20 @@ const EstudianteForm = (props) => {
             </div>
             <div style={{ color: "red" }}>
                 {errorNombre}
+            </div>
+            <div>
+                <label htmlFor="est_email"></label>
+                <input
+                    type="text"
+                    name="est_email"
+                    id="est_email"
+                    value={nuevoEstudiante.email}
+                    onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, email: e.target.value })}
+                    placeholder="Ingresa tu email" required
+                />
+            </div>
+            <div style={{ color: "red" }}>
+                {errorEmail}
             </div>
             <div>
                 <label htmlFor="est_edad">Edad:</label>
@@ -103,9 +125,20 @@ const EstudianteForm = (props) => {
                     placeholder="Ingresa URL Home Page" required />
             </div>
             <div>
+                <label htmlFor="est_pass"></label>
+                <input
+                    type="password"
+                    name="est_pass"
+                    id="est_url"
+                    value={nuevoEstudiante.password}
+                    onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, password: e.target.value })}
+                    placeholder="Ingresa tu password" required
+                />
+            </div>
+            <div>
                 <input
                     type="submit"
-                    value="Agregar"
+                    value="Registrar"
                 />
             </div>
         </form>

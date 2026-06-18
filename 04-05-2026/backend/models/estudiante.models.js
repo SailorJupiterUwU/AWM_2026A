@@ -10,6 +10,13 @@ const EstudianteSchema = new mongoose.Schema(
                 "Nombre es requerido xD"
             ]
         },
+        email:{
+            type: String,
+            required: [
+                true,
+               "El email es super requerido" 
+            ]
+        },
         edad: {
             type: Number,
             required: [
@@ -19,7 +26,11 @@ const EstudianteSchema = new mongoose.Schema(
         },
         url: {
             type: String
-        }
+        },
+        password:{
+            type: String,
+            required: [true, "Contraseña es obligatorio"]
+        },
     },
     { versionKey: false }
 );

@@ -23,3 +23,14 @@ Las validaciones se hace en fronted y backend, y en backend hacer a distintos ni
 3. Recupera informacion del usuario con el username
 4. Obtener hash de password enviado por el usuario en este momento y se compara con el hash del registro
 5.
+
+modulo de funciones criptograficas, HASH, comparacion
+Modulo bcryptjs =>>>> npm install bcryptjs
+
+Autorizacion
+ABAC: Atribute Based Access Contract
+Al autentifcarse hay que asignar un token, se firma con una FIRMA DIGITAL Y SE ENVIA AL CLIENTE, verifica que el token no se haya modificado y que el toker haya sido entregado por el mismo
+un token viaja en texto plano y no se debe incluir contraeña
+nosotro s definimos que va en el token
+%%Firma DIGITAL 
+    header, payload, firma ()payload y header y com clave que solo conoce el backend se obtiene una firma electronica que va al final

@@ -43,5 +43,11 @@ export const useEstudiante = () => {
             ))
             .catch(err => console.log(err))
     }
-    return { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante };
+
+    //logging
+    const login = (estudianteLogin) => {
+        api.post("/estudiante/login")
+        .then(res=>)
+    }
+    return { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login };
 }

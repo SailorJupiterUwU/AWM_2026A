@@ -4,13 +4,14 @@ import EstudianteForm from "./components/EstudianteForm";
 import HomePage from "./pages/HomePage";
 import { useEstudiante } from "./hooks/useEstudiante";
 import DetalleEstudiante from "./pages/DetalleEstudiante";
+import LoginForm from "./components/Login";
 
 
 /* Es un componente funcional, no tiene sentido que no tenga return */
 /* Esto de afuera es javaScript */
 function App() {
 
-  const { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante } = useEstudiante();
+  const { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login } = useEstudiante();
   /* Se retorna lo que se quiere mostrar */
   return (
     /* Se pone lo que el usuario debe ver, el componente que se va a mostrar*/
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/estudiantes/:id/detalle" element={<DetalleEstudiante />}></Route>
         <Route path="/estudiantes/:id/editar" element={<EstudianteForm onEditar={editarEstudiante} />}></Route>
+        <Route path="/login" element={<LoginForm onLogin={login}/>}></Route>
       </Routes>
     </BrowserRouter>
   )

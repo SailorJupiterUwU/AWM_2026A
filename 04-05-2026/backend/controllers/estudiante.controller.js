@@ -1,4 +1,5 @@
 const Estudiante = require("../models/estudiante.models");
+const bcrypt = require("bcryptjs");
 
 //para todos
 module.exports.getAllEstudiantes = (_, response) => {
@@ -17,12 +18,39 @@ module.exports.getEstudianteID = (request, response) => {
 }
 
 //para crear un nuevo estudiante
-module.exports.newEstudiante = (request, response) => {
-    const { nombre, edad, url } = request.body;
-    Estudiante.create({ nombre, edad, url })
-        .then(estudianteNuevo => response.json(estudianteNuevo))
-        .catch(err => response.json(err))
+module.exports.newEstudiante = async (request, response) => {
+    const { nombre, email, edad, url, password } = request.body;
+    //Verificacion que todos los campos si esten
+    if (!nombre || !email || !edad || !password)
+        response.status(400).json({ message: "Todos los campos son obligatorios" })
+    else {
+        //Busca usuario repetido
+        const estudianteFound = await Estudiante.findOne({ email });
+        if (estudianteFound)
+            response.status(400).json({ message: "El estudiante ya existe owo (menso) (boink)" })
+        else {
+            //hash contraseña
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
+            //Creacion de usuario y devuelve todo menos la contraseña
+            Estudiante.create({ nombre, email, edad, url, password: hashedPassword })
+                .then(estudianteNuevo => response.json({ nombre: estudianteNuevo.nombre, email: estudianteNuevo.email, edad: estudianteNuevo.edad, url: estudianteNuevo.url }))
+                .catch(err => response.json(err))
+        }
+    }
 
+
+}
+
+//para hacer login OwOOOOOO
+module.exports.loginEstudiante = async (request, response) => {
+    const { email, password } = request.body;
+    const estudianteFound = await Estudiante.findOne({ email });
+    if (estudianteFound && (await bcrypt.compare(password, estudianteFound.password))) {
+        response.json({ message: "Loggeado Exitosamente OWO" })
+    } else {
+        response.status(400).json({ message: "Escribe bien owo" })
+    }
 }
 
 //para editar estudiante

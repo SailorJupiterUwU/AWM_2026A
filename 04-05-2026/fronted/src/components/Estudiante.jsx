@@ -1,7 +1,7 @@
 const Estudiante = (props) => {
     //nombre={xxxx} edad={00} url={https://xxxx}
     console.log(props)
-    const {nombre, edad, url} = props;
+    const {nombre, email, edad, url} = props;
     return (
         <div>
             <h1>{nombre}</h1>
