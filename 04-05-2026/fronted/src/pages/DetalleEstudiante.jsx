@@ -19,7 +19,7 @@ const DetalleEstudiante = () => {
     return (
         <div>
             <h1>Detalle</h1>
-            <br />
+            <button onClick={() => navegar("/estudiantes")}>←</button>
             <hr />
             <h2>{estudiante.nombre}</h2>
             <h4>Edad: {estudiante.edad}</h4>

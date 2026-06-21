@@ -78,8 +78,9 @@ const EstudianteForm = (props) => {
             <h1>
                 {editar ? "Editando Estudiante" : "Registro"}
             </h1>
-            <hr />
             <button onClick={() => navegar(editar ? "/estudiantes" : "/")}>←</button>
+            <hr />
+
             <form onSubmit={handlerSubmit}>
                 <div>
                     <label htmlFor="est_nombre">Nombre:</label>
