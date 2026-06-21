@@ -18,11 +18,15 @@ export const useEstudiante = () => {
     //Para agregar nuevo estudiante
     const agregarEstudiante = (nuevoEstudiante) => {
 
-        api.post("/estudiantes", nuevoEstudiante)
+        return api.post("/estudiantes", nuevoEstudiante)
             .then((res) => {
                 setEstudiantes(prev => ([...prev, res.data]))
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                const mensaje = err.response?.data?.message ?? "Error al registrar";
+                console.log(mensaje);
+                throw mensaje;
+            })
 
     }
 
@@ -31,23 +35,32 @@ export const useEstudiante = () => {
 
             .then(() => {
                 console.log("Estuidante eliminado", id)
-                setEstudiantes(prev=> prev.filter(e => getId(e) !== id))})
+                setEstudiantes(prev => prev.filter(e => getId(e) !== id))
+            })
             .catch(err => console.log(err))
     }
 
     const editarEstudiante = (editadoEstudiante) => {
         const id = getId(editadoEstudiante)
-        api.put(`/estudiantes/${id}`, editadoEstudiante) 
+        api.put(`/estudiantes/${id}`, editadoEstudiante)
             .then(res => setEstudiantes(prev =>
-                prev.map(e => getId(e) === id ? res.data : e) 
+                prev.map(e => getId(e) === id ? res.data : e)
             ))
             .catch(err => console.log(err))
     }
 
     //logging
     const login = (estudianteLogin) => {
-        api.post("/estudiante/login")
-        .then(res=>)
+        return api.post("/estudiantes/login", estudianteLogin)
+            .then(res =>{
+            console.log(res.data.message);
+            return res.data;
+        })
+        .catch(err => {
+            const mensaje = err.response?.data?.message ?? "Error al iniciar sesión";
+            console.log(mensaje);
+            throw mensaje;
+        })
     }
     return { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login };
 }

@@ -21,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/estudiantes" element={<EstudiantesPage estudiantes={estudiantes} onEliminar={eliminarEstudiante} />}></Route>
         <Route path="/estudiantes/nuevo" element={<EstudianteForm onAgregar={agregarEstudiante} />}></Route>
-        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/" element={<HomePage/>}></Route>
         <Route path="/estudiantes/:id/detalle" element={<DetalleEstudiante />}></Route>
         <Route path="/estudiantes/:id/editar" element={<EstudianteForm onEditar={editarEstudiante} />}></Route>
         <Route path="/login" element={<LoginForm onLogin={login}/>}></Route>

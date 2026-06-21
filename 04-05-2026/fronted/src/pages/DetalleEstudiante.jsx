@@ -16,13 +16,16 @@ const DetalleEstudiante = () => {
             .catch(err => console.log(err))
     }, []);
 
-    return(
+    return (
         <div>
+            <h1>Detalle</h1>
+            <br />
+            <hr />
             <h2>{estudiante.nombre}</h2>
             <h4>Edad: {estudiante.edad}</h4>
-            {estudiante.url?<a href={estudiante.url}>Home Page</a>:<span>Home page no disponible</span>}
+            {estudiante.url ? <a href={estudiante.url}>Home Page</a> : <span>Home page no disponible</span>}
             <br />
-            <button onClick={()=> navegar(`/estudiantes/${id}/editar`)}>Editar UwU</button>
+            <button onClick={() => navegar(`/estudiantes/${id}/editar`)}>Editar UwU</button>
         </div>
     )
 }

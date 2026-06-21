@@ -16,7 +16,7 @@ const EstudiantesPage = (props) => {
     return (
         <div>
             <h1>Estudiantes</h1>
-            <button onClick={() => navegar("/estudiantes/nuevo")}>+</button>
+            <br />
             <hr />
             {
                 estudiantes.map((estudiante) => {

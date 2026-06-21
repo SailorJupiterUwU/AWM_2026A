@@ -13,8 +13,9 @@ module.exports.getAllEstudiantes = (_, response) => {
 module.exports.getEstudianteID = (request, response) => {
     const { id } = request.params;
     Estudiante.findById(id)
+        .select("-password")
         .then(estudiante => response.json(estudiante))
-        .catch(err => response.json(err))
+        .catch(err => response.status(500).json(err))
 }
 
 //para crear un nuevo estudiante
@@ -35,7 +36,7 @@ module.exports.newEstudiante = async (request, response) => {
             //Creacion de usuario y devuelve todo menos la contraseña
             Estudiante.create({ nombre, email, edad, url, password: hashedPassword })
                 .then(estudianteNuevo => response.json({ nombre: estudianteNuevo.nombre, email: estudianteNuevo.email, edad: estudianteNuevo.edad, url: estudianteNuevo.url }))
-                .catch(err => response.json(err))
+                .catch(err => response.status(500).json(err))
         }
     }
 
@@ -56,9 +57,9 @@ module.exports.loginEstudiante = async (request, response) => {
 //para editar estudiante
 module.exports.editEstudiante = (request, response) => {
     const { id } = request.params;
-    const { nombre, edad, url } = request.body;
-    Estudiante.findOneAndUpdate({ _id: id }, { nombre, edad, url }, { returnDocument: 'after' })
-        .then(estudianteEditado => response.json(estudianteEditado))
+    const { nombre, email, edad, url, password} = request.body;
+    Estudiante.findOneAndUpdate({ _id: id }, { nombre, edad, url, email, password }, { returnDocument: 'after' })
+        .then(estudianteEditado => response.json({nombre: estudianteEditado.nombre, email: estudianteEditado.email, edad: estudianteEditado.edad, url: estudianteEditado.url}))
         .catch(err => response.json(err))
 }
 

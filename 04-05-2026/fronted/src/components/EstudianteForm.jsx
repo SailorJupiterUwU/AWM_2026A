@@ -17,11 +17,12 @@ const EstudianteForm = (props) => {
 
     //Para hacer el formulario
     const { id } = useParams();
-
+    //Para saber si esta editando o no
+    const editar = !!id;
     useEffect(() => {
         if (editar) {
             api.get(`/estudiantes/${id}`)
-                .then(res => setNuevoEstudiante(res.data))
+                .then(res => setNuevoEstudiante({ ...res.data, password: "" }))
                 .catch(err => console.log(err))
         }
     }, [id]);
@@ -32,9 +33,6 @@ const EstudianteForm = (props) => {
 
     //Desestructuracion de la funcion de props
     const { onAgregar, onEditar } = props;
-
-    //Para saber si esta editando o no
-    const editar = !!id;
 
     const handlerSubmit = (e) => {
         e.preventDefault();
@@ -49,10 +47,12 @@ const EstudianteForm = (props) => {
             }
             else {
                 onAgregar(nuevoEstudiante)
+                    .then(() => navegar("/login"))
+                    .catch((mensaje) => setError(mensaje));
                 setError("")
                 setErrorEdad("")
                 setNuevoEstudiante({ id: " ", nombre: " ", edad: 0, url: " ", email: " ", password: " " })
-                navegar("/estudiantes")
+
             }
         }
 
@@ -74,74 +74,81 @@ const EstudianteForm = (props) => {
     }
 
     return (
-        <form onSubmit={handlerSubmit}>
-            <div>
-                <label htmlFor="est_nombre">Nombre:</label>
-                <input
-                    type="text"
-                    name="est_nombre"
-                    id="est_nombre"
-                    value={nuevoEstudiante.nombre}
-                    onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, nombre: e.target.value })}
-                    placeholder="Ingresa nombre" required />
-            </div>
-            <div style={{ color: "red" }}>
-                {errorNombre}
-            </div>
-            <div>
-                <label htmlFor="est_email"></label>
-                <input
-                    type="text"
-                    name="est_email"
-                    id="est_email"
-                    value={nuevoEstudiante.email}
-                    onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, email: e.target.value })}
-                    placeholder="Ingresa tu email" required
-                />
-            </div>
-            <div style={{ color: "red" }}>
-                {errorEmail}
-            </div>
-            <div>
-                <label htmlFor="est_edad">Edad:</label>
-                <input
-                    type="number"
-                    name="est_edad"
-                    id="est_edad" value={nuevoEstudiante.edad}
-                    onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, edad: e.target.value })}
-                    placeholder="Ingresa tu edad" required />
-            </div>
-            <div style={{ color: "red" }}>
-                {errorEdad}
-            </div>
-            <div>
-                <label htmlFor="est_url">URL Home Page:</label>
-                <input
-                    type="text"
-                    name="est_url"
-                    id="est_url"
-                    value={nuevoEstudiante.url}
-                    onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, url: e.target.value })}
-                    placeholder="Ingresa URL Home Page" required />
-            </div>
-            <div>
-                <label htmlFor="est_pass"></label>
-                <input
-                    type="password"
-                    name="est_pass"
-                    id="est_url"
-                    value={nuevoEstudiante.password}
-                    onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, password: e.target.value })}
-                    placeholder="Ingresa tu password" required
-                />
-            </div>
-            <div>
-                <input
-                    type="submit"
-                    value="Registrar"
-                />
-            </div>
-        </form>
+        <div>
+            <h1>
+                {editar ? "Editando Estudiante" : "Registro"}
+            </h1>
+            <hr />
+            <button onClick={() => navegar(editar ? "/estudiantes" : "/")}>←</button>
+            <form onSubmit={handlerSubmit}>
+                <div>
+                    <label htmlFor="est_nombre">Nombre:</label>
+                    <input
+                        type="text"
+                        name="est_nombre"
+                        id="est_nombre"
+                        value={nuevoEstudiante.nombre}
+                        onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, nombre: e.target.value })}
+                        placeholder="Ingresa nombre" required />
+                </div>
+                <div style={{ color: "red" }}>
+                    {errorNombre}
+                </div>
+                <div>
+                    <label htmlFor="est_email">Email</label>
+                    <input
+                        type="text"
+                        name="est_email"
+                        id="est_email"
+                        value={nuevoEstudiante.email}
+                        onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, email: e.target.value })}
+                        placeholder="Ingresa tu email" required
+                    />
+                </div>
+                <div style={{ color: "red" }}>
+                    {errorEmail}
+                </div>
+                <div>
+                    <label htmlFor="est_edad">Edad:</label>
+                    <input
+                        type="number"
+                        name="est_edad"
+                        id="est_edad" value={nuevoEstudiante.edad}
+                        onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, edad: e.target.value })}
+                        placeholder="Ingresa tu edad" required />
+                </div>
+                <div style={{ color: "red" }}>
+                    {errorEdad}
+                </div>
+                <div>
+                    <label htmlFor="est_url">URL Home Page:</label>
+                    <input
+                        type="text"
+                        name="est_url"
+                        id="est_url"
+                        value={nuevoEstudiante.url}
+                        onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, url: e.target.value })}
+                        placeholder="Ingresa URL Home Page" required />
+                </div>
+                <div>
+                    <label htmlFor="est_pass">Contraseña</label>
+                    <input
+                        type="password"
+                        name="est_pass"
+                        id="est_pass"
+                        value={nuevoEstudiante.password}
+                        onChange={(e) => setNuevoEstudiante({ ...nuevoEstudiante, password: e.target.value })}
+                        placeholder="Ingresa tu password" required
+                    />
+                </div>
+                <div>
+                    <input
+                        type="submit"
+                        value="Registrar"
+                    />
+                </div>
+            </form>
+        </div>
     )
 }
 
