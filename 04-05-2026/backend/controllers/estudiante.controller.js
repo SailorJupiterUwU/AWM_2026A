@@ -1,5 +1,6 @@
 const Estudiante = require("../models/estudiante.models");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //para todos
 module.exports.getAllEstudiantes = (_, response) => {
@@ -40,7 +41,6 @@ module.exports.newEstudiante = async (request, response) => {
         }
     }
 
-
 }
 
 //para hacer login OwOOOOOO
@@ -48,10 +48,20 @@ module.exports.loginEstudiante = async (request, response) => {
     const { email, password } = request.body;
     const estudianteFound = await Estudiante.findOne({ email });
     if (estudianteFound && (await bcrypt.compare(password, estudianteFound.password))) {
-        response.json({ message: "Loggeado Exitosamente OWO" })
+        response.json({ message: "Loggeado Exitosamente OWO", token: generateToken(estudianteFound._id, estudianteFound.nombre, estudianteFound.email) })
     } else {
         response.status(400).json({ message: "Escribe bien owo" })
     }
+}
+
+//para generar el token
+//instalar biblioteca json token
+//se puede enviar un rol en el parametro de entrada (esto va en el payload)
+//en ves de JWT_SECRET un const: contraseña y la password
+const jwt_secret = "owo123"
+//se define el tiempo de expiracion
+const generateToken = (id, nombre, email) => {
+    return jwt.sign({id, nombre, email }, jwt_secret, {expiresIn: '30d'})
 }
 
 //para editar estudiante

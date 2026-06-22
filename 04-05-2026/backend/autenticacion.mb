@@ -22,7 +22,7 @@ Las validaciones se hace en fronted y backend, y en backend hacer a distintos ni
 2. Post(username, password)
 3. Recupera informacion del usuario con el username
 4. Obtener hash de password enviado por el usuario en este momento y se compara con el hash del registro
-5.
+5. Se entrega un tpken cuando el inicio de sesion es correcto json web token
 
 modulo de funciones criptograficas, HASH, comparacion
 Modulo bcryptjs =>>>> npm install bcryptjs
@@ -33,4 +33,11 @@ Al autentifcarse hay que asignar un token, se firma con una FIRMA DIGITAL Y SE E
 un token viaja en texto plano y no se debe incluir contraeña
 nosotro s definimos que va en el token
 %%Firma DIGITAL 
-    header, payload, firma ()payload y header y com clave que solo conoce el backend se obtiene una firma electronica que va al final
+    header, payload, firma ()payload y header y com clave que solo conoce el backend se obtiene una firma electronica que va al final (se firma el header y el payload)
+    Dentro del .then se decide como se almacena el token
+    Token que se cierra cuando se cierra el navegador
+    Token que dura más
+
+Ahora para las peticiones se necesita enviar el token, se debe implementar un middleware para verificar un token (token al portador)
+La autorizacion es basica, si tiene el token ingresa a las demas rutas, si no no
+la cabecera del token solo tiene el algoritmo y el typo
