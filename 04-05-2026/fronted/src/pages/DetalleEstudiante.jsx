@@ -11,7 +11,16 @@ const DetalleEstudiante = () => {
     const navegar = useNavigate();
 
     useEffect(() => {
-        api.get(`/estudiantes/${id}`)
+        const token = sessionStorage.getItem('token')
+        if (!token) {
+            console.log("no hay token")
+            return
+        }
+        api.get(`/estudiantes/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(res => setEstudiante(res.data))
             .catch(err => console.log(err))
     }, []);

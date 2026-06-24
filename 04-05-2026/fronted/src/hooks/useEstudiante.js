@@ -8,7 +8,16 @@ export const useEstudiante = () => {
     const [estudiantes, setEstudiantes] = useState([]);
     //Para renderizar por primera vez
     useEffect(() => {
-        api.get("/estudiantes")
+        const token = sessionStorage.getItem('token')
+        if (!token) {
+            console.log("no hay token")
+            return
+        }
+        api.get("/estudiantes", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then((res) => {
                 setEstudiantes(res.data)
             })
@@ -17,8 +26,16 @@ export const useEstudiante = () => {
 
     //Para agregar nuevo estudiante
     const agregarEstudiante = (nuevoEstudiante) => {
-
-        return api.post("/estudiantes", nuevoEstudiante)
+        const token = sessionStorage.getItem('token')
+        if (!token) {
+            console.log("no hay token")
+            return
+        }
+        return api.post("/estudiantes", nuevoEstudiante, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then((res) => {
                 setEstudiantes(prev => ([...prev, res.data]))
             })
@@ -31,7 +48,16 @@ export const useEstudiante = () => {
     }
 
     const eliminarEstudiante = (id) => {
-        api.delete(`/estudiantes/${id}`)
+        const token = sessionStorage.getItem('token')
+        if (!token) {
+            console.log("no hay token")
+            return
+        }
+        api.delete(`/estudiantes/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
 
             .then(() => {
                 console.log("Estuidante eliminado", id)
@@ -42,7 +68,16 @@ export const useEstudiante = () => {
 
     const editarEstudiante = (editadoEstudiante) => {
         const id = getId(editadoEstudiante)
-        api.put(`/estudiantes/${id}`, editadoEstudiante)
+        const token = sessionStorage.getItem('token')
+        if (!token) {
+            console.log("no hay token")
+            return
+        }
+        api.put(`/estudiantes/${id}`, editadoEstudiante, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(res => setEstudiantes(prev =>
                 prev.map(e => getId(e) === id ? res.data : e)
             ))
@@ -52,15 +87,17 @@ export const useEstudiante = () => {
     //logging
     const login = (estudianteLogin) => {
         return api.post("/estudiantes/login", estudianteLogin)
-            .then(res =>{
-            console.log(res.data.message);
-            return res.data;
-        })
-        .catch(err => {
-            const mensaje = err.response?.data?.message ?? "Error al iniciar sesión";
-            console.log(mensaje);
-            throw mensaje;
-        })
+            .then(res => {
+                console.log(res.data.message);
+                const token = res.data.token;
+                sessionStorage.setItem('token', token);
+                return res.data;
+            })
+            .catch(err => {
+                const mensaje = err.response?.data?.message ?? "Error al iniciar sesión";
+                console.log(mensaje);
+                throw mensaje;
+            })
     }
     return { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login };
 }

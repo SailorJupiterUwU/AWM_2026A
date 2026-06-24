@@ -14,7 +14,9 @@ const LoginForm = (props) => {
         e.preventDefault();
         if (iniciarEstudiante.email.length > 8) {
             onLogin(iniciarEstudiante)
-                .then(() => navegar("/estudiantes"))
+                .then(() => {
+                    navegar("/estudiantes")
+                })
                 .catch((mensaje) => setErrorEmail(mensaje));
         }
     }
