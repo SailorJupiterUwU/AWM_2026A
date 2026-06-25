@@ -5,24 +5,14 @@ import { api } from "../utils/api";
 
 //Actualizar estudiante form para que tenga dos propositos, crear y editar estudiante, rutas diferentes
 
-const DetalleEstudiante = () => {
+const DetalleEstudiante = (props) => {
     const [estudiante, setEstudiante] = useState({});
     const { id } = useParams();
     const navegar = useNavigate();
-
+    const { onGetEstudiante } = props
     useEffect(() => {
-        const token = sessionStorage.getItem('token')
-        if (!token) {
-            console.log("no hay token")
-            return
-        }
-        api.get(`/estudiantes/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-            .then(res => setEstudiante(res.data))
-            .catch(err => console.log(err))
+        onGetEstudiante(id)
+            .then(res => setNuevoEstudiante({ ...res.data}))
     }, []);
 
     return (

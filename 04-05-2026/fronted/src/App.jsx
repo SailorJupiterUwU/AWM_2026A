@@ -11,7 +11,7 @@ import LoginForm from "./components/Login";
 /* Esto de afuera es javaScript */
 function App() {
 
-  const { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login } = useEstudiante();
+  const { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login, getEstudiante } = useEstudiante();
   /* Se retorna lo que se quiere mostrar */
   return (
     /* Se pone lo que el usuario debe ver, el componente que se va a mostrar*/
@@ -21,10 +21,10 @@ function App() {
       <Routes>
         <Route path="/estudiantes" element={<EstudiantesPage estudiantes={estudiantes} onEliminar={eliminarEstudiante} />}></Route>
         <Route path="/estudiantes/nuevo" element={<EstudianteForm onAgregar={agregarEstudiante} />}></Route>
-        <Route path="/" element={<HomePage/>}></Route>
-        <Route path="/estudiantes/:id/detalle" element={<DetalleEstudiante />}></Route>
-        <Route path="/estudiantes/:id/editar" element={<EstudianteForm onEditar={editarEstudiante} />}></Route>
-        <Route path="/login" element={<LoginForm onLogin={login}/>}></Route>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/estudiantes/:id/detalle" element={<DetalleEstudiante onGetEstudiante={getEstudiante} />}></Route>
+        <Route path="/estudiantes/:id/editar" element={<EstudianteForm onEditar={editarEstudiante} onGetEstudiante={getEstudiante}  />}></Route>
+        <Route path="/login" element={<LoginForm onLogin={login} />}></Route>
       </Routes>
     </BrowserRouter>
   )
