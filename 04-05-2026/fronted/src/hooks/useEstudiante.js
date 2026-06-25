@@ -26,15 +26,9 @@ export const useEstudiante = () => {
 
     //Para agregar nuevo estudiante
     const agregarEstudiante = (nuevoEstudiante) => {
-        const token = sessionStorage.getItem('token')
-        if (!token) {
-            console.log("no hay token")
-            return
-        }
+        
         return api.post("/estudiantes", nuevoEstudiante, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+           
         })
             .then((res) => {
                 setEstudiantes(prev => ([...prev, res.data]))

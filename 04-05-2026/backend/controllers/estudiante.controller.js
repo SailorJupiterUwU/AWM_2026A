@@ -21,7 +21,7 @@ module.exports.getEstudianteID = (request, response) => {
 
 //para crear un nuevo estudiante
 module.exports.newEstudiante = async (request, response) => {
-    const { nombre, email, edad, url, password } = request.body;
+    const { nombre, email, edad, url, password, rol } = request.body;
     //Verificacion que todos los campos si esten
     if (!nombre || !email || !edad || !password)
         response.status(400).json({ message: "Todos los campos son obligatorios" })
@@ -36,7 +36,7 @@ module.exports.newEstudiante = async (request, response) => {
             const hashedPassword = await bcrypt.hash(password, salt);
             //Creacion de usuario y devuelve todo menos la contraseña
             Estudiante.create({ nombre, email, edad, url, password: hashedPassword })
-                .then(estudianteNuevo => response.json({ nombre: estudianteNuevo.nombre, email: estudianteNuevo.email, edad: estudianteNuevo.edad, url: estudianteNuevo.url }))
+                .then(estudianteNuevo => response.json({ nombre: estudianteNuevo.nombre, email: estudianteNuevo.email, edad: estudianteNuevo.edad, url: estudianteNuevo.url, rol: estudianteNuevo.rol }))
                 .catch(err => response.status(500).json(err))
         }
     }
@@ -48,7 +48,7 @@ module.exports.loginEstudiante = async (request, response) => {
     const { email, password } = request.body;
     const estudianteFound = await Estudiante.findOne({ email });
     if (estudianteFound && (await bcrypt.compare(password, estudianteFound.password))) {
-        response.json({ message: "Loggeado Exitosamente OWO", token: generateToken(estudianteFound._id, estudianteFound.nombre, estudianteFound.email) })
+        response.json({ message: "Loggeado Exitosamente OWO", token: generateToken(estudianteFound._id, estudianteFound.nombre, estudianteFound.email, estudianteFound.rol) })
     } else {
         response.status(400).json({ message: "Escribe bien owo" })
     }
@@ -60,8 +60,8 @@ module.exports.loginEstudiante = async (request, response) => {
 //en ves de JWT_SECRET un const: contraseña y la password
 const jwt_secret = "owo123"
 //se define el tiempo de expiracion
-const generateToken = (id, nombre, email) => {
-    return jwt.sign({id, nombre, email }, jwt_secret, {expiresIn: '30d'})
+const generateToken = (id, nombre, email, rol) => {
+    return jwt.sign({id, nombre, email, rol }, jwt_secret, {expiresIn: '30d'})
 }
 
 //para editar estudiante
