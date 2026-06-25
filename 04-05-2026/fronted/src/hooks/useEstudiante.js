@@ -67,7 +67,7 @@ export const useEstudiante = () => {
             console.log("no hay token")
             return
         }
-        api.put(`/estudiantes/${id}`, editadoEstudiante, {
+        return api.put(`/estudiantes/${id}`, editadoEstudiante, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -93,5 +93,20 @@ export const useEstudiante = () => {
                 throw mensaje;
             })
     }
-    return { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login };
+
+    const getEstudiante = (id) => {
+        const token = sessionStorage.getItem('token')
+        if (!token) {
+            console.log("no hay token")
+            return
+        }
+        return api.get(`/estudiantes/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+            .catch(err => console.log(err))
+    }
+    return { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login, getEstudiante };
 }
