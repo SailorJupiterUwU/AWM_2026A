@@ -6,14 +6,22 @@ import { getId } from "../utils/normalizador";
 export const useEstudiante = () => {
     //Variable de estado
     const [estudiantes, setEstudiantes] = useState([]);
+    const [esVisualizador, setEsVisualizador] = useState(false);
     //Para renderizar por primera vez
     useEffect(() => {
+        const rol = sessionStorage.getItem('rol');
+        if (rol && rol.trim().toLowerCase() === "visualizador") {
+            setEsVisualizador(true);
+        } else {
+            setEsVisualizador(false);
+        }
+        
         const token = sessionStorage.getItem('token')
         if (!token) {
             console.log("no hay token")
             return
         }
-        api.get("/estudiantes", {
+        api.get("/api/estudiantes", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -21,19 +29,29 @@ export const useEstudiante = () => {
             .then((res) => {
                 setEstudiantes(res.data)
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                const mensaje = err.response?.data?.message ?? "Error al cargar estudiantes";
+                throw mensaje;
+            })
     }, [])
 
     //Para agregar nuevo estudiante
     const agregarEstudiante = (nuevoEstudiante) => {
-        
-        return api.post("/estudiantes", nuevoEstudiante)
+        const token = sessionStorage.getItem('token')
+        if (!token) {
+            console.log("no hay token")
+            return
+        }
+        return api.post("/api/estudiantes", nuevoEstudiante, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then((res) => {
                 setEstudiantes(prev => ([...prev, res.data]))
             })
             .catch((err) => {
-                const mensaje = err.res?.data?.message ?? "Error al registrar";
-                console.log(mensaje);
+                const mensaje = err.response?.data?.message ?? "Error al registrar";
                 throw mensaje;
             })
 
@@ -45,7 +63,7 @@ export const useEstudiante = () => {
             console.log("no hay token")
             return
         }
-        api.delete(`/estudiantes/${id}`, {
+        api.delete(`/api/estudiantes/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -55,17 +73,19 @@ export const useEstudiante = () => {
                 console.log("Estuidante eliminado", id)
                 setEstudiantes(prev => prev.filter(e => getId(e) !== id))
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                const mensaje = err.response?.data?.message ?? "Error al eliminar estudiante";
+                throw mensaje;
+            })
     }
 
     const editarEstudiante = (editadoEstudiante) => {
         const id = getId(editadoEstudiante)
         const token = sessionStorage.getItem('token')
         if (!token) {
-            console.log("no hay token")
             return
         }
-        return api.put(`/estudiantes/${id}`, editadoEstudiante, {
+        return api.put(`/api/estudiantes/${id}`, editadoEstudiante, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -73,21 +93,8 @@ export const useEstudiante = () => {
             .then(res => setEstudiantes(prev =>
                 prev.map(e => getId(e) === id ? res.data : e)
             ))
-            .catch(err => console.log(err))
-    }
-
-    //logging
-    const login = (estudianteLogin) => {
-        return api.post("/estudiantes/login", estudianteLogin)
-            .then(res => {
-                console.log(res.data.message);
-                const token = res.data.token;
-                sessionStorage.setItem('token', token);
-                return res.data;
-            })
-            .catch(err => {
-                const mensaje = err.response?.data?.message ?? "Error al iniciar sesión";
-                console.log(mensaje);
+            .catch((err) => {
+                const mensaje = err.response?.data?.message ?? "Error al editar el estudiante";
                 throw mensaje;
             })
     }
@@ -98,13 +105,16 @@ export const useEstudiante = () => {
             console.log("no hay token")
             return
         }
-        return api.get(`/estudiantes/${id}`, {
+        return api.get(`/api/estudiantes/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
-
-            .catch(err => console.log(err))
+            .then(res => res)
+            .catch((err) => {
+                const mensaje = err.response?.data?.message ?? "Error al obtener los datos del estudiante";
+                throw mensaje;
+            })
     }
-    return { estudiantes, agregarEstudiante, eliminarEstudiante, editarEstudiante, login, getEstudiante };
+    return { estudiantes, esVisualizador, agregarEstudiante, eliminarEstudiante, editarEstudiante, getEstudiante };
 }
