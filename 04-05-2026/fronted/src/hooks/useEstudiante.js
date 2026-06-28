@@ -27,7 +27,9 @@ export const useEstudiante = () => {
     //Para agregar nuevo estudiante
     const agregarEstudiante = (nuevoEstudiante) => {
         
-        return api.post("/estudiantes", nuevoEstudiante)
+        return api.post("/estudiantes", nuevoEstudiante, {
+           
+        })
             .then((res) => {
                 setEstudiantes(prev => ([...prev, res.data]))
             })

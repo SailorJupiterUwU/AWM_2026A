@@ -4,19 +4,23 @@ import EstudianteForm from "../components/EstudianteForm";
 import { getId } from "../utils/normalizador";
 
 const EstudiantesPage = (props) => {
-
-    
-    //Se trae la lista de estudiantesw
-    const { estudiantes, onEliminar } = props;
-
     //Para usar la funcion
     console.log("Renderizando...");
     const navegar = useNavigate()
+    
+    //Se trae la lista de estudiantesw
+    const { estudiantes, onEliminar } = props;
+    const cerrarSesion = () => {
+        sessionStorage.removeItem('token');
+        navegar("/login");
+    }
+
+
 
     return (
         <div>
             <h1>Estudiantes</h1>
-            <br />
+            <button onClick={cerrarSesion}>Salir OwO</button>
             <hr />
             {
                 estudiantes.map((estudiante) => {

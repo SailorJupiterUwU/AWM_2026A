@@ -31,6 +31,10 @@ const EstudianteSchema = new mongoose.Schema(
             type: String,
             required: [true, "Contraseña es obligatorio"]
         },
+        rol:{
+            type: String,
+            required: [true, "Rol es requerido"]
+        },
     },
     { versionKey: false }
 );
