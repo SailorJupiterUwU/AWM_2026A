@@ -4,14 +4,17 @@ const app = express();
 const puerto = 8000;
 
 const sequelize = require("./config/sequelize.config");
-//Middleware antes de las rutas, tipos de middelwares: Implementado o Crearlos por uno mismo
+
+// Middleware antes de las rutas, tipos de middlewares: Implementado o Crearlos por uno mismo
 /* Tambien se puede llamar al middleware desde las rutas */
 app.use(cors());
 app.use(express.json());
 
-const allEstudiantesRoutes = require("./routes/estudiante.routes")
+const allEstudiantesRoutes = require("./routes/estudiante.routes");
+const allUsuariosRoutes = require("./routes/usuarios.routes");
 
 allEstudiantesRoutes(app);
+allUsuariosRoutes(app);
 
 sequelize.authenticate()
     .then(() => console.log("Conectado a la base de datos"))
@@ -20,7 +23,6 @@ sequelize.authenticate()
 sequelize.sync()
     .then(() => console.log("Tablas sincronizadas"))
     .catch(err => console.log(err));
-
 
 app.listen(puerto, () => {
     console.log(`Servidor escuchando en el puerto: ${puerto}`);

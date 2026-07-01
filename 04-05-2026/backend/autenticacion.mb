@@ -41,3 +41,5 @@ nosotro s definimos que va en el token
 Ahora para las peticiones se necesita enviar el token, se debe implementar un middleware para verificar un token (token al portador)
 La autorizacion es basica, si tiene el token ingresa a las demas rutas, si no no
 la cabecera del token solo tiene el algoritmo y el typo
+
+ORM object relational mapping
