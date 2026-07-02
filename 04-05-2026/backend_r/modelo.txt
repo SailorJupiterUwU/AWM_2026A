@@ -1,0 +1,19 @@
+1.- Definir la cardinalidad
+    1-1 --> belongsTo, hasOne
+    1-∞ --> hasMany
+    ∞-∞ --> belongsToMany
+            
+2.- Relaciones en codigo
+A----B     
+    A.hasOne(B) en B existe una foreign key de A. La clave foranea va hacia B
+    B.belongsTo(A) en B existe una foreign key de A. La clave foranea esta en B
+    Se debe escribir en ambos lados para facilidad de busqueda en ambos lados
+A----*B
+    A.hasMany(B) en B existe un foreign key de A, la clave foranea va hacia B
+
+*----*
+    //Se debe indicar cual es la tabla intermedia, C es la tabla intermedia
+    A.belongsToMany(B,C)
+    B.belongsToMany(A,C)
+3.- include 
+    Para obtener informacion de dos entidades relacionales, para no hacer un join
