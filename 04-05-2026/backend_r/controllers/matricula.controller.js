@@ -18,7 +18,7 @@ module.exports.getEstudianteMatriculado = async (request, response) => {
     try{
         const matriculados = await Matricula.findAll({
             where: {EstudianteId: id},
-            include: [Asignatura.nombre, Estudiante.nombre]
+            include: [Asignatura, Estudiante]
         });
         response.json(matriculados);
     }
