@@ -12,11 +12,13 @@ app.use(express.json());
 
 const allEstudiantesRoutes = require("./routes/estudiante.routes");
 const allUsuariosRoutes = require("./routes/usuarios.routes");
-const allMatriculaRoutes = require("./routes/matricula.routes")
+const allMatriculaRoutes = require("./routes/matricula.routes");
+const allAsignaturaRoutes = require("./routes/asignatura.routes");
 
 allEstudiantesRoutes(app);
 allUsuariosRoutes(app);
 allMatriculaRoutes(app);
+allAsignaturaRoutes(app);
 
 sequelize.authenticate()
     .then(() => console.log("Conectado a la base de datos"))
