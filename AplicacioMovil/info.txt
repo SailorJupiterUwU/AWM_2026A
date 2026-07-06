@@ -1,0 +1,12 @@
+Se usa Reaact Native, es multiplataforma
+Ahora se usan frameworks hibridos, para IOS y para Android
+Llama a componentes nativos del terminal
+Es muy dificil programar de forma nativa
+Es correcto afirmar que el codigo js se compila en un lenguaje propio de cada SO, FALSO
+    Se llama a componentes nativos
+
+Se de be colocar la IP del backend para las llamadas con axios
+
+expo: provee un expoCLI (interfaz de linea de comando) para desplegar el directorio de trabajo
+expoGO: aplicacion movil que hay que instalar en el celular para desplegar en tiempo real la aplicacion, si esta en la misma red funca
+EAS: expo aplication services, permite construir la aplicacion, generar el apk, y submit a playstore
