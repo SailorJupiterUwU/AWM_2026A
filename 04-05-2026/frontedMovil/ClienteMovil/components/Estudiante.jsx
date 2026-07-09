@@ -1,17 +1,13 @@
 import { View, Text, TouchableOpacity, StyleSheet, Linking } from 'react-native';
 
-const Estudiante = (props) => {
-  const { nombre, edad, url } = props;
+const Estudiante = ({ nombre, edad, onPress }) => {
   return (
-    <View style={styles.card}>
-      <Text style={styles.nombre}>{nombre}</Text>
-      <Text style={styles.edad}>{edad}</Text>
-      {url ? (
-        <TouchableOpacity>
-          <Text style={styles.link}>Home Page</Text>
-        </TouchableOpacity>
-      ) : null}
-    </View>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.card}>
+        <Text style={styles.nombre}>{nombre}</Text>
+        <Text style={styles.edad}>{edad}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -30,10 +26,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#555',
     marginVertical: 2,
-  },
-  link: {
-    color: '#1e88e5',
-    marginTop: 4,
   },
 });
 
