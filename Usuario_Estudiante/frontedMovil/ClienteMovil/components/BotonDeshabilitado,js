@@ -1,0 +1,6 @@
+const botonDeshabilitado = (esVisualizador) => ({
+    disabled: esVisualizador,
+    style: {
+        opacity: esVisualizador ? 0.5 : 1,
+    },
+});
