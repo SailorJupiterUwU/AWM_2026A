@@ -15,8 +15,10 @@ export const useUser = () => {
 
     const loginUser = async (user) => {
         try {
+            
             const res = await api.post("/api/login", user);
             const token = res.data.token;
+            console.log(res.data);
             const payload = jwtDecode(token);
             await AsyncStorage.setItem("token", token);
             await AsyncStorage.setItem("rol", payload.rol);
