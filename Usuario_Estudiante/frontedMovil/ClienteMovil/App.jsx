@@ -9,6 +9,7 @@ import UserForm from "./pages/UserForm";
 import EstudiantePage from "./pages/EstudiantePage";
 import EstudianteForm from "./pages/EstudianteForm";
 import DetalleEstudiante from "./pages/DetalleEstudiante";
+import LocationPage from "./pages/LocationPage";
 import RutaProtegida from "./components/RutaProtegida";
 
 import { useEstudiante } from "./hooks/useEstudiante";
@@ -63,6 +64,14 @@ function App() {
               <RutaProtegida {...props}>
                 <DetalleEstudiante {...props} onGetEstudiante={getEstudiante} />
               </RutaProtegida>
+            )}
+          </Stack.Screen>
+
+          <Stack.Screen name="LocationPage">
+            {(props) => (
+
+              <LocationPage {...props} />
+
             )}
           </Stack.Screen>
 

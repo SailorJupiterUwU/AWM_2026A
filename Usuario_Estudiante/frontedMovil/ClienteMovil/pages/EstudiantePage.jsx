@@ -5,7 +5,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Estudiante from "../components/Estudiante";
 import { getId } from "../utils/normalizador";
-import { api } from "../utils/api"; // Asegúrate de importar tu instancia de API
+import { api } from "../utils/api";
 
 const EstudiantePage = ({ estudiantes, onEliminar, navigation }) => {
     const [listaEstudiantes, setListaEstudiantes] = useState([]);

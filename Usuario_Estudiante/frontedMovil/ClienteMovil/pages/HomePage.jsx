@@ -19,6 +19,12 @@ const HomePage = ({ navigation }) => {
                 >
                     <Text style={styles.textoBotonSecundario}>Crear Cuenta</Text>
                 </TouchableOpacity>
+                <TouchableOpacity 
+                    style={styles.botonTerciario} 
+                    onPress={() => navigation.navigate("LocationPage")}
+                >
+                    <Text style={styles.textoBotonTerciario}>📍 Ver mi ubicación</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
@@ -75,11 +81,22 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         paddingVertical: 14, // Un poco menos para compensar el grosor del borde
         alignItems: "center",
+        marginBottom: 16,
     },
     textoBotonSecundario: {
         color: "#4F46E5",
         fontWeight: "700",
         fontSize: 16,
+    },
+    // Estilos del Botón de Ubicación (Texto/Ghost, discreto)
+    botonTerciario: {
+        paddingVertical: 12,
+        alignItems: "center",
+    },
+    textoBotonTerciario: {
+        color: "#64748B",
+        fontWeight: "600",
+        fontSize: 15,
     },
 });
 
